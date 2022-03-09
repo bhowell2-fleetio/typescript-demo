@@ -1,0 +1,889 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "strictNullChecks": true,
+    "noImplicitAny": false,
+    "jsx": "react",
+    "moduleResolution": "Node"
+  }
+}
+
+function printValues(obj) {
+  for (var key in obj) {
+  if (typeof obj[key] === "object") {
+  printValues(obj[key]);
+} else {
+console.log(key, obj[key]);
+}
+}
+}
+
+console.log(environment)
+
+console.log("\n\n")
+
+environment.loaders.forEach(entry => {
+console.log("new loader: " + entry.key)
+printValues(entry.value)
+})
+
+console.log('Environment export.')
+
+
+
+import React, { lazy } from 'react'
+import { BreadcrumbsRoute } from 'use-react-router-breadcrumbs'
+
+import vendorClassifications from '@app/constants/vendorClassifications'
+
+import WorkOrderBreadcrumb from '@app/components/work-orders/WorkOrderBreadcrumb'
+
+import { CurrentAbility } from '@app/types/models/Session'
+import Routes from './index'
+
+import AccountMeterPrioritySettings from '../containers/account_settings/meter_priority_settings/Edit'
+
+import AccountFuelSettings from '../containers/account_settings/fuel_settings/Edit'
+
+import AccountInspectionSettings from '../containers/account_settings/inspection_settings/Edit'
+
+import AccountPasswordRequirements from '../containers/account_settings/password_requirements/Edit'
+
+import AutoIntegratePaymentProfilesIndex from '../containers/auto_integrate/payment_profiles/Index'
+
+import AutoIntegratePaymentProfilesNew from '../containers/auto_integrate/payment_profiles/New'
+
+import AutoIntegratePaymentProfilesShow from '../containers/auto_integrate/payment_profiles/Show'
+
+import AutoIntegratePaymentProfilesDriverSupportEdit from '../containers/auto_integrate/payment_profiles/driver_support/Edit'
+
+import AutoIntegratePaymentProfilesMaintenanceHistoryMappingNew from '../containers/auto_integrate/payment_profiles/maintenance_history_code_mappings/New'
+
+import AutoIntegratePaymentProfilesNotificationPoliciesIndex from '../containers/auto_integrate/payment_profiles/notification_policies/Index'
+
+import AutoIntegratePaymentProfilesVehicleManagementIndex from '../containers/auto_integrate/payment_profiles/vehicle_management/Index'
+
+import ContactRenewalRemindersEdit from '../containers/contact_renewal_reminders/Edit'
+
+import ContactRenewalRemindersNew from '../containers/contact_renewal_reminders/New'
+
+import EquipmentsEdit from '../containers/equipments/Edit'
+import EquipmentsIndex from '../containers/equipments/Index'
+import EquipmentsNew from '../containers/equipments/New'
+import EquipmentsShow from '../containers/equipments/Show'
+import EquipmentsUpgrade from '../containers/equipments/Upgrade'
+
+import ExpenseHistoryIndex from '../containers/expense_entries/Index'
+
+import ExpenseEntryShow from '../containers/expense_entries/Show'
+
+import ExpenseEntryNew from '../containers/expense_entries/New'
+
+import ExpenseEntryEdit from '../containers/expense_entries/Edit'
+
+import FaultsIndex from '../containers/faults/Index'
+import DuplicateFuelEntriesIndex from '../containers/fuel_entries/duplicates/Index'
+
+import FileIndex from '../containers/files/Index'
+import FuelTypeIndex from '../containers/fuel_types/Index'
+import VehicleTypeIndex from '../containers/vehicle_types/Index'
+
+import IssueIndex from '../containers/issues/Index'
+
+import RecallIndex from '../containers/vehicle_recalls/Index'
+
+import IssueShow from '../containers/issues/Show'
+import IssueNew from '../containers/issues/New'
+import GpsIntegrationNew from '../containers/gps_integrations/New'
+import GpsIntegrationEdit from '../containers/gps_integrations/Edit'
+import IssueEdit from '../containers/issues/Edit'
+
+import MsiQuickstartNew from '../containers/msi/quickstart/New'
+
+import PartNew from '../containers/parts/New'
+import PartEdit from '../containers/parts/Edit'
+import PartShow from '../containers/parts/Show'
+
+import PartIndex from '../containers/parts/Index'
+
+import PlaceEdit from '../containers/places/Edit'
+
+import PlaceIndex from '../containers/places/Index'
+
+import PlaceNew from '../containers/places/New'
+
+import PlaceShow from '../containers/places/Show'
+
+import RecordSetIndex from '../containers/record_sets/Index'
+
+import ReplacementAnalysis from '../containers/replacement_analysis/Index'
+
+import RolesIndex from '../containers/roles/Index'
+
+import ServiceEntryIndex from '../containers/service_entries/Index'
+import ServiceEntryShow from '../containers/service_entries/Show'
+
+import ServiceProgramNew from '../containers/service_programs/New'
+import ServiceProgramShow from '../containers/service_programs/Show'
+import ServiceProgramEdit from '../containers/service_programs/Edit'
+import ServiceProgramIndex from '../containers/service_programs/Index'
+import ServiceProgramLineItemNew from '../containers/service_program_line_items/New'
+import ServiceProgramLineItemEdit from '../containers/service_program_line_items/Edit'
+// commented to prevent flashes of react content, uncomment for release
+// import ServiceReminderIndex = lazy(() =>
+//   import(/* webpackChunkName: "ServiceReminderIndex" */ '../containers/service_reminders/Index')
+// )
+import ServiceReminderShow from '../containers/service_reminders/Show'
+import ServiceReminderNew from '../containers/service_reminders/New'
+import ServiceReminderEdit from '../containers/service_reminders/Edit'
+
+import ShopDirectoryIndex from '../containers/shop_directory/Index'
+
+import ShopIntegrationIndex from '../containers/shop_integration/Index'
+
+import SubmittedInspectionFormsIndex from '../containers/submitted_inspection_forms/Index'
+
+import SubmittedInspectionFormsShow from '../containers/submitted_inspection_forms/Show'
+import SubscriptionsIndex from '../containers/subscriptions/Index'
+
+import SubmittedInspectionFormsNew from '../containers/submitted_inspection_forms/New'
+
+import VehicleIndex from '../containers/vehicles/Index'
+
+import VehicleNew from '../containers/vehicles/New'
+import VehicleEdit from '../containers/vehicles/Edit'
+
+import VehicleRenewalRemindersEdit from '../containers/vehicle_renewal_reminders/Edit'
+import VehicleRenewalRemindersNew from '../containers/vehicle_renewal_reminders/New'
+
+import VendorIndex from '../containers/vendors/Index'
+import VendorShow from '../containers/vendors/Show'
+import VendorNew from '../containers/vendors/New'
+import VendorEdit from '../containers/vendors/Edit'
+
+import WorkOrderIndex from '../containers/work_orders/Index'
+import WorkOrderNew from '../containers/work_orders/New'
+import WorkOrderEdit from '../containers/work_orders/Edit'
+import WorkOrderShow from '../containers/work_orders/Show'
+
+interface ReactRoute extends Omit<BreadcrumbsRoute, 'path'> {
+path: string | string[]
+exact?: boolean
+// TODO, how to type these lazy component imports
+component?: React.ComponentType
+// This is a callback that accepts our ability from currentSession. Use for controlling if route should even
+// render, based on permissions
+can?: boolean | ((ability: CurrentAbility) => boolean)
+// Used to report to analytics page event tracking
+eventName?: string
+// These props are passed to our RoutedBreadcrumbs component. Also, if breadcrumbLegacy is `true`, it will
+// not actually be rendered in the React Router. And that paths definition in this file
+// is purely for breadcrumb generation purposes
+props?: {
+breadcrumbLegacy?: boolean
+breadcrumbCanLink?: boolean
+breadcrumbRender?: (routeObject: Record<string, any>) => string | JSX.Element
+}
+}
+
+const TOP_LEVEL_ROUTES: ReactRoute[] = [
+{
+component: AccountMeterPrioritySettings,
+path: Routes.edit_account_meter_priority_settings_path(':accountToken'),
+exact: true,
+can: (ability) => ability.update.account,
+eventName: 'AccountMeterPrioritySettings'
+},
+{
+component: AccountFuelSettings,
+path: Routes.edit_account_fuel_settings_path(':accountToken'),
+exact: true,
+can: (ability) => ability.update.account,
+eventName: 'AccountFuelSettings'
+},
+{
+component: AccountInspectionSettings,
+path: Routes.edit_account_inspection_settings_path(':accountToken'),
+exact: true,
+can: (ability) => ability.update.account,
+eventName: 'AccountInspectionSettings'
+},
+{
+component: AccountPasswordRequirements,
+path: Routes.edit_account_password_requirements_path(':accountToken'),
+exact: true,
+can: (ability) => ability.update.account,
+eventName: 'AccountPasswordRequirements'
+},
+{
+component: AutoIntegratePaymentProfilesIndex,
+path: '/:accountToken/auto_integrate/payment_profiles',
+exact: true,
+can: (ability) => ability.owner_or_admin,
+eventName: 'AutoIntegratePaymentProfilesIndex'
+},
+{
+component: AutoIntegratePaymentProfilesNew,
+path: '/:accountToken/auto_integrate/payment_profiles/new',
+exact: true,
+can: (ability) => ability.create.auto_integrate_payment_profile,
+eventName: 'AutoIntegratePaymentProfilesNew'
+},
+{
+component: AutoIntegratePaymentProfilesMaintenanceHistoryMappingNew,
+path: '/:accountToken/auto_integrate/maintenance_history_code_mappings/new',
+exact: true,
+can: (ability) => ability.owner_or_admin,
+eventName: 'AutoIntegratePaymentProfilesMaintenanceHistoryMappingNew'
+},
+{
+component: AutoIntegratePaymentProfilesShow,
+path: '/:accountToken/auto_integrate/payment_profiles/:payment_profile_id',
+exact: true,
+can: (ability) => ability.owner_or_admin,
+eventName: 'AutoIntegratePaymentProfilesShow'
+},
+{
+component: AutoIntegratePaymentProfilesDriverSupportEdit,
+path: '/:accountToken/auto_integrate/payment_profiles/:payment_profile_id/driver_support/edit',
+exact: true,
+can: (ability) => ability.owner_or_admin,
+eventName: 'AutoIntegratePaymentProfilesDriverSupportEdit'
+},
+{
+component: AutoIntegratePaymentProfilesNotificationPoliciesIndex,
+path: '/:accountToken/auto_integrate/payment_profiles/:payment_profile_id/notification_policies',
+exact: true,
+can: (ability) => ability.owner_or_admin,
+eventName: 'AutoIntegratePaymentProfilesNotificationPoliciesIndex'
+},
+{
+component: AutoIntegratePaymentProfilesNew,
+path: '/:accountToken/auto_integrate/payment_profiles/shared_payment_profile_form/new',
+exact: true,
+can: (ability) => ability.guest,
+eventName: 'AutoIntegratePaymentProfilesNew'
+},
+{
+component: AutoIntegratePaymentProfilesVehicleManagementIndex,
+path: '/:accountToken/auto_integrate/payment_profiles/:payment_profile_id/vehicle_management/:scope(enabled|disabled|invalid)?',
+exact: true,
+can: (ability) => ability.owner_or_admin,
+eventName: 'AutoIntegratePaymentProfilesVehicleManagementIndex'
+},
+{
+component: ContactRenewalRemindersEdit,
+path: '/:accountToken/contact_renewal_reminders/:id([0-9]+)/edit',
+exact: true,
+can: (ability) => ability.update.contact_renewal_reminders
+},
+{
+component: ContactRenewalRemindersNew,
+path: '/:accountToken/contact_renewal_reminders/new',
+exact: true,
+can: (ability) => ability.create.contact_renewal_reminders
+},
+{
+path: '/:accountToken/contact_renewal_reminders',
+props: {
+breadcrumbLegacy: true
+}
+},
+{
+path: '/:accountToken/contact_renewal_reminders/:id([0-9]+)',
+props: {
+breadcrumbCanLink: false, // this "route" doesnt exist until React page is created,
+breadcrumbRender: ({ reminder }) =>
+`${reminder.contact.full_name} - ${reminder.contact_renewal_type_name}`
+}
+},
+{
+component: EquipmentsEdit,
+path: '/:accountToken/equipment/:id([0-9]+)/edit',
+exact: true,
+can: (ability) => ability.update.equipments,
+eventName: 'EquipmentsEdit'
+},
+{
+component: EquipmentsIndex,
+path: '/:accountToken/equipment/:scope(archived|assigned|unassigned)?',
+exact: true,
+eventName: 'EquipmentsIndex'
+},
+{
+component: EquipmentsNew,
+path: '/:accountToken/equipment/new',
+exact: true,
+can: (ability) => ability.create.equipments,
+eventName: 'EquipmentsNew'
+},
+{
+component: EquipmentsShow,
+path: '/:accountToken/equipment/:id([0-9]+)/',
+exact: true,
+can: (ability) => ability.read.equipments,
+eventName: 'EquipmentsShow',
+props: {
+breadcrumbRender: ({ equipment }) => equipment.name
+}
+},
+{
+component: EquipmentsShow,
+path: `/:accountToken/equipment/:id([0-9]+)/(assignment_history|linked_vehicle_history|issues)?`,
+exact: true,
+can: (ability) => ability.read.equipments
+},
+{
+component: EquipmentsUpgrade,
+path: '/:accountToken/equipment/upgrade',
+exact: true,
+can: (ability) => ability.read.equipments,
+eventName: 'EquipmentsUpgrade'
+},
+{
+component: ExpenseHistoryIndex,
+path: '/:accountToken/expense_entries/:state(state)?/:scope(past|future)?',
+exact: true,
+can: (ability) => ability.read.expense_entries
+},
+{
+component: ExpenseEntryShow,
+path: [
+'/:accountToken/expense_entries/:id([0-9]+)',
+'/:accountToken/vehicles/:vehicle_id([0-9]+)/expense_entries/:id([0-9]+)'
+],
+exact: true,
+can: (ability) => ability.read.expense_entries,
+props: {
+breadcrumbRender: ({ expenseEntry }) => `#${expenseEntry.id}`
+}
+},
+{
+component: ExpenseEntryNew,
+path: '/:accountToken/expense_entries/new',
+exact: true,
+can: (ability) => ability.create.expense_entries
+},
+{
+component: ExpenseEntryEdit,
+path: ['/:accountToken/expense_entries/:id([0-9]+)/edit'],
+exact: true,
+can: (ability) => ability.update.expense_entries,
+props: {
+breadcrumbRender: ({ expenseEntry }) => `#${expenseEntry.id}`
+}
+},
+{
+component: FaultsIndex,
+path: '/:accountToken/faults/:state(state)?/:scope(open|pending|resolved|ignored)?',
+exact: true,
+can: (ability) => ability.read.faults,
+eventName: 'FaultsIndex'
+},
+{
+component: DuplicateFuelEntriesIndex,
+path: '/:accountToken/fuel_entries/duplicates',
+exact: true,
+can: (ability) => ability.read.fuel_entries,
+eventName: 'DuplicateFuelEntriesIndex'
+},
+{
+component: FileIndex,
+path: '/:accountToken/files/:resource(documents|images)?/:scope(all|shared)?',
+exact: false,
+can: (ability) => ability.view_nav.document,
+eventName: 'FileIndex'
+},
+{
+component: FuelTypeIndex,
+path: Routes.fuel_types_path(':accountToken'),
+exact: true,
+can: (ability) => ability.update.account,
+eventName: 'FuelTypeIndex'
+},
+{
+component: VehicleTypeIndex,
+path: Routes.vehicle_types_path(':accountToken'),
+exact: true,
+can: (ability) => ability.update.account,
+eventName: 'VehicleTypeIndex'
+},
+{
+component: IssueNew,
+path: '/:accountToken/issues/new',
+exact: true,
+can: (ability) => ability.create.issues,
+eventName: 'IssueNew'
+},
+{
+component: GpsIntegrationNew,
+path: '/:accountToken/account/gps/integrations/new',
+exact: true,
+can: (ability) => ability.update.account,
+eventName: 'GpsIntegrationNew'
+},
+{
+component: GpsIntegrationEdit,
+path: Routes.edit_gps_integration_path(':accountToken', ':id'),
+exact: true,
+can: (ability) => ability.update.account,
+eventName: 'GpsIntegrationEdit'
+},
+{
+component: IssueEdit,
+path: Routes.edit_issue_path(':accountToken', ':number'),
+exact: true,
+can: (ability) => ability.update.issues,
+eventName: 'IssueEdit'
+},
+{
+component: IssueIndex,
+path: '/:accountToken/issues/:state(state)?/:scope(all|opened|overdue|resolved|closed)?',
+exact: true,
+can: (ability) => ability.read.issues,
+eventName: 'IssueIndex'
+},
+{
+component: IssueShow,
+path: [
+'/:accountToken/issues/:number([0-9]+)',
+'/:accountToken/vehicles/:vehicle_id/issues/:number([0-9]+)',
+'/:accountToken/equipment/:equipment_id/issues/:number([0-9]+)'
+],
+exact: true,
+can: (ability) => ability.read.issues,
+eventName: 'IssueShow',
+props: {
+breadcrumbRender: ({ issue }) => `#${issue.number}`
+}
+},
+{
+component: MsiQuickstartNew,
+path: '/:accountToken/msi/quickstart/new',
+exact: true,
+can: (ability) => ability.create.msi_onboarding_survey,
+eventName: 'MsiQuickstartNew'
+},
+{
+component: PartNew,
+path: '/:accountToken/parts/new',
+exact: true,
+can: (ability) => ability.create.parts && ability.view_nav.parts,
+eventName: 'PartNew'
+},
+{
+component: PartEdit,
+path: Routes.edit_part_path(':accountToken', ':id'),
+exact: true,
+can: (ability) => ability.update.parts,
+eventName: 'PartEdit'
+},
+{
+component: PartShow,
+path: '/:accountToken/parts/:id([0-9]+)/:activity(purchase_history|work_order_activity|inventory_activity)?',
+exact: true,
+can: (ability) => ability.read.parts && ability.view_nav.parts,
+eventName: 'PartShow',
+props: {
+breadcrumbRender: ({ part }) => part.number
+}
+},
+{
+component: PartIndex,
+path: '/:accountToken/parts/:scope(location|archived)?/:part_location_id([0-9]+)?',
+exact: true,
+can: (ability) => ability.read.parts && ability.view_nav.parts,
+eventName: 'PartIndex'
+},
+{
+component: PlaceEdit,
+path: '/:accountToken/places/:id/edit',
+exact: true,
+can: (ability) => ability.update.places,
+eventName: 'PlaceEdit'
+},
+{
+component: PlaceIndex,
+path: '/:accountToken/places',
+exact: true,
+can: (ability) => ability.read.places,
+eventName: 'PlaceIndex'
+},
+{
+component: PlaceNew,
+path: '/:accountToken/places/new',
+exact: true,
+can: (ability) => ability.create.places,
+eventName: 'PlaceNew'
+},
+{
+component: PlaceShow,
+path: '/:accountToken/places/:id/(location_entries)?',
+exact: true,
+can: (ability) => ability.read.places,
+eventName: 'PlaceShow',
+props: {
+breadcrumbRender: ({ place }) => place.name
+}
+},
+{
+component: RecallIndex,
+path: '/:accountToken/recalls/:state(state)?/:scope(all|needs_action|open_issue|resolved_issue|acknowledged)?',
+exact: true,
+can: (ability) => ability.read.vehicle_recalls,
+eventName: 'RecallIndex'
+},
+{
+component: RecordSetIndex,
+path: '/:accountToken/record_sets/:scope?',
+exact: true,
+can: (ability) => ability.manage.user
+},
+{
+component: ReplacementAnalysis,
+path: Routes.replacement_analysis_path(':accountToken'),
+exact: true,
+can: (ability) => ability.read.vehicles && ability.view_nav.vehicle,
+eventName: 'ReplacementAnalysis'
+},
+{
+component: RolesIndex,
+path: '/:accountToken/roles',
+exact: true,
+can: (ability) => ability.manage.user
+},
+{
+component: ServiceEntryIndex,
+path: '/:accountToken/service_entries/:scope(pending|completed)?',
+exact: true,
+can: (ability) => ability.read.service_entries,
+eventName: 'ServiceEntryIndex'
+},
+{
+component: ServiceEntryShow,
+path: [
+'/:accountToken/vehicles/:vehicle_id([0-9]+)/service_entries/:id([0-9]+)',
+'/:accountToken/service_entries/:id([0-9]+)'
+],
+exact: true,
+can: (ability) => ability.read.service_entries,
+eventName: 'ServiceEntryShow',
+props: {
+breadcrumbRender: ({ serviceEntry }) => `#${serviceEntry.id}`
+}
+},
+{
+component: ServiceProgramNew,
+path: Routes.new_service_program_path(':accountToken'),
+exact: true,
+can: (ability) => ability.create.service_programs,
+eventName: 'ServiceProgramNew'
+},
+{
+component: ServiceProgramEdit,
+path: Routes.edit_service_program_path(':accountToken', ':id'),
+exact: true,
+can: (ability) => ability.update.service_programs,
+eventName: 'ServiceProgramEdit'
+},
+{
+component: ServiceProgramIndex,
+path: Routes.service_programs_path(':accountToken'),
+exact: true,
+can: (ability) => ability.read.service_programs,
+eventName: 'ServiceProgramIndex'
+},
+{
+component: ServiceProgramShow,
+path: '/:accountToken/service_programs/:id([0-9]+)/',
+exact: true,
+can: (ability) => ability.read.service_programs,
+eventName: 'ServiceProgramShow',
+props: {
+breadcrumbRender: ({ serviceProgram }) => serviceProgram.name
+}
+},
+{
+component: ServiceProgramShow,
+path: '/:accountToken/service_programs/:id([0-9]+)/:scope(service_program_line_items|vehicles)?',
+exact: true,
+can: (ability) => ability.read.service_programs,
+breadcrumb: null // The way SP pages are designed, these aren't real breadcrumbs
+},
+{
+component: ServiceProgramLineItemNew,
+path: Routes.new_service_program_service_program_line_item_path(
+':accountToken',
+':service_program_id'
+),
+exact: true,
+can: (ability) => ability.update.service_programs,
+eventName: 'ServiceProgramLineItemNew'
+},
+{
+component: ServiceProgramLineItemEdit,
+path: Routes.edit_service_program_service_program_line_item_path(
+':accountToken',
+':service_program_id',
+':id'
+),
+exact: true,
+can: (ability) => ability.update.service_programs,
+eventName: 'ServiceProgramLineItemEdit'
+},
+{
+path: '/:accountToken/service_programs/:service_program_id([0-9]+)/service_program_line_items/:service_program_id',
+breadcrumb: null,
+props: {
+breadcrumbLegacy: true
+}
+},
+// commented to prevent flashes of react content, uncomment for release
+// {
+//   component: ServiceReminderIndex,
+//   path: `/:accountToken/service_reminders/(status)?/:status_name(overdue|due_soon|snoozed)?`,
+//   exact: true,
+//   can: (ability) => ability.read.service_reminders,
+//   eventName: 'ServiceReminderIndex'
+// },
+{
+component: ServiceReminderShow,
+path: [
+'/:accountToken/vehicles/([0-9]+)/service_reminders/:id([0-9]+)/(service_occurrences|history)?',
+'/:accountToken/vehicles/([0-9]+)/service_reminders/([0-9]+)',
+'/:accountToken/service_reminders/:id([0-9]+)/(service_occurrences|history)?'
+] as any,
+exact: true,
+can: (ability) => ability.read.service_reminders,
+eventName: 'ServiceReminderShow',
+props: {
+breadcrumbCanLink: false,
+breadcrumbRender: ({ serviceReminder }) =>
+serviceReminder && `${serviceReminder.service_task.name} Reminder`
+}
+},
+{
+path: '/:accountToken/vehicles/:id([0-9]+)/service_reminders',
+props: {
+breadcrumbLegacy: true
+}
+},
+{
+component: ServiceReminderNew,
+path: Routes.new_service_reminder_path(':accountToken'),
+exact: true,
+can: (ability) => ability.create.service_reminders,
+eventName: 'ServiceReminderNew'
+},
+{
+component: ServiceReminderEdit,
+path: Routes.edit_service_reminder_path(':accountToken', ':id'),
+exact: true,
+can: (ability) => ability.update.service_reminders,
+eventName: 'ServiceReminderEdit'
+},
+{
+component: ShopDirectoryIndex,
+path: Routes.shop_directory_index_path(':accountToken'),
+exact: true,
+can: (ability) => ability.read.vendors && ability.view_nav.vendor,
+eventName: 'ShopDirectoryIndex'
+},
+{
+component: ShopIntegrationIndex,
+path: Routes.service_integrations_path(':accountToken'),
+exact: true,
+can: (ability) => ability.manage.service_integrations,
+eventName: 'ShopIntegrationIndex'
+},
+{
+component: SubmittedInspectionFormsIndex,
+path: '/:accountToken/submitted_inspection_forms/:scope(only_with_failed_items)?',
+exact: true,
+can: (ability) => ability.read.submitted_inspection_forms,
+eventName: 'SubmittedInspectionFormsIndex',
+breadcrumb: 'Inspection History'
+},
+{
+component: SubmittedInspectionFormsShow,
+path: Routes.submitted_inspection_form_path(':accountToken', ':id'),
+exact: true,
+can: (ability) => ability.read.submitted_inspection_forms,
+eventName: 'SubmittedInspectionFormsShow',
+props: {
+breadcrumbRender: ({ inspectionForm }) => inspectionForm.title
+}
+},
+{
+component: SubmittedInspectionFormsNew,
+path: Routes.new_inspection_form_submitted_inspection_form_path(
+':accountToken',
+':inspectionFormId'
+),
+exact: true,
+can: (ability) => ability.create.submitted_inspection_forms,
+eventName: 'SubmittedInspectionFormsNew'
+},
+{
+component: SubmittedInspectionFormsNew,
+path: Routes.new_inspection_form_public_submitted_inspection_form_path(
+':accountToken',
+':inspectionFormId'
+),
+exact: true,
+can: (ability) => ability.guest,
+eventName: 'SubmittedInspectionFormsNew'
+},
+{
+component: SubscriptionsIndex,
+path: Routes.subscriptions_path(':accountToken'),
+exact: true,
+can: (ability) => ability.update.subscription,
+eventName: 'SubscriptionsIndex'
+},
+{
+component: VehicleIndex,
+path: '/:accountToken/vehicles/:scope(assigned|unassigned|archived)?',
+exact: true,
+can: (ability) => ability.read.vehicles && ability.view_nav.vehicle,
+eventName: 'VehicleIndex'
+},
+{
+component: VehicleNew,
+path: '/:accountToken/vehicles/new',
+exact: true,
+can: (ability) => ability.create.vehicles && ability.view_nav.vehicle,
+eventName: 'VehicleNew'
+},
+{
+component: VehicleEdit,
+path: '/:accountToken/vehicles/:id([0-9]+)/edit',
+exact: true,
+can: (ability) => ability.update.vehicles && ability.view_nav.vehicle,
+eventName: 'VehicleEdit'
+},
+{
+path: '/:accountToken/vehicles/:id([0-9]+)',
+props: {
+breadcrumbLegacy: true,
+breadcrumbRender: ({ vehicle }) => vehicle.name
+}
+},
+{
+path: '/:accountToken/vehicles/:id([0-9]+)/service_entries',
+props: {
+breadcrumbLegacy: true
+}
+},
+{
+path: '/:accountToken/vehicles/:id([0-9]+)/expense_entries',
+props: {
+breadcrumbLegacy: true
+}
+},
+{
+path: '/:accountToken/vehicles/:id([0-9]+)/issues',
+props: {
+breadcrumbLegacy: true
+}
+},
+{
+path: '/:accountToken/vehicles/:id([0-9]+)/work_orders',
+props: {
+breadcrumbLegacy: true
+}
+},
+{
+component: VehicleRenewalRemindersEdit,
+path: '/:accountToken/vehicle_renewal_reminders/:id([0-9]+)/edit',
+exact: true,
+can: (ability) => ability.update.vehicle_renewal_reminders
+},
+{
+component: VehicleRenewalRemindersNew,
+path: '/:accountToken/vehicle_renewal_reminders/new',
+exact: true,
+can: (ability) => ability.create.vehicle_renewal_reminders
+},
+{
+path: '/:accountToken/vehicle_renewal_reminders',
+props: {
+breadcrumbLegacy: true
+}
+},
+{
+path: '/:accountToken/vehicle_renewal_reminders/:id([0-9]+)',
+props: {
+breadcrumbCanLink: false, // this "route" doesnt exist until React page is created,
+breadcrumbRender: ({ reminder }) =>
+`${reminder.vehicle.name} - ${reminder.vehicle_renewal_type_name}`
+}
+},
+{
+component: VendorIndex,
+path: `/:accountToken/vendors/:scope(${[...vendorClassifications, 'archived'].join('|')})?`,
+exact: true,
+can: (ability) => ability.read.vendors && ability.view_nav.vendor,
+eventName: 'VendorIndex'
+},
+{
+component: VendorEdit,
+path: '/:accountToken/vendors/:id([0-9]+)/edit',
+exact: true,
+can: (ability) => ability.update.vendors,
+eventName: 'VendorEdit'
+},
+{
+component: VendorShow,
+path: '/:accountToken/vendors/:id([0-9]+)/:scope(service_entries|work_orders|fuel_entries|purchase_orders)?',
+exact: true,
+can: (ability) => ability.read.vendors && ability.view_nav.vendor,
+eventName: 'VendorShow',
+props: {
+breadcrumbRender: ({ vendor }) => vendor.name
+}
+},
+{
+component: VendorNew,
+path: Routes.new_vendor_path(':accountToken'),
+exact: true,
+can: (ability) => ability.create.vendors && ability.view_nav.vendor,
+eventName: 'VendorNew'
+},
+{
+component: WorkOrderShow,
+path: [
+'/:accountToken/work_orders/:number([0-9]+)',
+'/:accountToken/vehicles/:vehicle_id/work_orders/:number([0-9]+)'
+],
+exact: true,
+can: (ability) => ability.read.work_orders,
+eventName: 'WorkOrderShow',
+props: {
+breadcrumbRender: ({ workOrder }) => <WorkOrderBreadcrumb workOrder={workOrder} />
+}
+},
+{
+component: WorkOrderIndex,
+path: '/:accountToken/work_orders/(status)?/:id([0-9]+)?',
+exact: true,
+can: (ability) => ability.read.work_orders,
+eventName: 'WorkOrderIndex'
+},
+{
+component: WorkOrderNew,
+path: Routes.new_work_order_path(':accountToken'),
+exact: true,
+can: (ability) => ability.create.work_orders,
+eventName: 'WorkOrderNew'
+},
+{
+component: WorkOrderEdit,
+path: Routes.edit_work_order_path(':accountToken', ':number'),
+exact: true,
+can: (ability) => ability.update.work_orders,
+eventName: 'WorkOrderEdit'
+}
+]
+
+export default TOP_LEVEL_ROUTES
